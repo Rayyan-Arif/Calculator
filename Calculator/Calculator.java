@@ -22,6 +22,7 @@ public class Calculator extends JFrame implements ActionListener{
     JButton divide;
     JButton Decimal;
     JButton equal;
+    JButton clear;
     JTextField screen;
     Double num1 ,num2 , FinalResult = 0.0;
     Integer count=0; 
@@ -41,6 +42,7 @@ public class Calculator extends JFrame implements ActionListener{
         Digit8 = new JButton("8");
         Digit9 = new JButton("9");
         multiply = new JButton("x");
+        clear = new JButton("Clear");
         add = new JButton("+");
         minus = new JButton("-");
         divide = new JButton("/");
@@ -49,7 +51,7 @@ public class Calculator extends JFrame implements ActionListener{
         screen = new JTextField();
 
         this.setLayout(new GridLayout(2,1));
-        lowerPanel = new JPanel(new GridLayout(4,4));
+        lowerPanel = new JPanel(new GridLayout(4,4,5,5));
         upperPanel = new JPanel();
 
         lowerPanel.add(Digit7);
@@ -71,7 +73,11 @@ public class Calculator extends JFrame implements ActionListener{
 
         screen.setPreferredSize(new Dimension(590,200));
         screen.setFont(new Font("Arial",Font.PLAIN,120));
+        clear.setFont(new Font("Arial",Font.PLAIN,40));
         upperPanel.add(screen);
+        upperPanel.add(clear);
+        clear.setPreferredSize(new Dimension(200,60));
+        clear.addActionListener(this);
         this.add(upperPanel);
         this.add(lowerPanel);
 
@@ -291,6 +297,13 @@ public class Calculator extends JFrame implements ActionListener{
             }
             KeepTrack = " ";
         }
-        
+        if(e.getSource() == clear){
+            screen.setText("");
+            num1 = 0.0;
+            num2 = 0.0;
+            FinalResult = 0.0;
+            KeepTrack = " ";
+            count = 0;
+        }
     }
 }
